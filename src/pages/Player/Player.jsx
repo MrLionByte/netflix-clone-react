@@ -6,7 +6,7 @@ import {useNavigate, useParams} from 'react-router-dom'
 export const Player = () => {
 
     const {id} = useParams();
-
+    console.log("IDASDsadsdasd" + id)
     const navigate = useNavigate();
 
     const [apiData, setApiData] = useState({
@@ -30,11 +30,12 @@ export const Player = () => {
         .then(response => setApiData(response.results[0]))
         .catch(err => console.error(err));
 
-      },[])
+      },[id]);
 
     return (
         <div className='player'>
             <img src={back_arrow_icon} alt="" onClick={()=>{navigate(-2)}  } />
+            
             <iframe src= {`https://www.youtube.com/embed/${apiData.key}`} 
             title='trailer' frameborder="0" width="90%" height="90%" allowFullScreen></iframe>
             <div className="player-info">

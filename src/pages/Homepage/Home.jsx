@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Home.css'
 import {Navbar} from '../../components/Navbar/Navbar'
 import hero_banner from '../../assets/hero_banner.jpg'
 import hero_title from '../../assets/hero_title.png'
 import play_icon from '../../assets/play_icon.png'
 import info_icon from '../../assets/info_icon.png'
+import exit_icon from '../../assets/exit.png'
 import { TitleCards } from '../../components/TitleCards/TitleCards'
 import { Footer } from '../../components/Footer/Footer'
+import { useHref, useNavigate } from 'react-router-dom'
  
 export const Home = () => {
+  const [showVideo, setShowVideo] = useState(false);
+
+  const handlePlayClick = () => {
+    setShowVideo(true);
+  };
+
   return (
     <div className='home'>
         <Navbar />
@@ -16,15 +24,33 @@ export const Home = () => {
           <img src={hero_banner} alt=""  className='banner-img'/>
           <div className="hero-caption">
               <img src={hero_title} alt="" className='caption-img'/>
-              <p>Discovering his ties to a secret ancient order, a young man 
-                living in modern Istanbul embarks on a quest to save the city 
-                from an immortal enemy.</p>
+              <p>As Alfred the Great defends his kingdom from Norse invaders, Uhtred -- born a Saxon but raised by 
+                Vikings -- seeks to claim his ancestral birthright.
+              <br />
+              <br />
+              Starring:   Alexander Dreymon, Emily Cox, David Dawson</p>
                 <div className="hero-btns">
-                    <button className='btn'>
-                        <img src={ play_icon } alt="" /> Play </button>
+                    <button className='btn' onClick={handlePlayClick}>
+                        <img src={ play_icon } alt="" />
+                         Play 
+                         </button>
                     <button className='btn dark-btn'>
                           <img src={ info_icon } alt="" /> More Info </button>
                 </div>
+                {showVideo && (
+            <div className="video-modal">
+              <iframe
+                src="https://www.youtube.com/embed/eqCYw_o5lng"
+                title="Stranger Things Trailer"
+                frameBorder="0"
+                width="40%"
+                height="400"
+                allowFullScreen
+              ></iframe>
+              <img src={exit_icon}
+               className="close-btn" onClick={() => setShowVideo(false)}/>
+            </div>
+          )}
                 <TitleCards />
           </div>
         </div>

@@ -15,20 +15,30 @@ export const Login = () => {
   const userAuth = async (event)=> {
     event.preventDefault();
     setLoading(true);
-    if (signState === "Sign In"){
-      if (!email || !password){
-        alert("Email and password are required")
-        return;
+    try {
+      if (signState === "Sign In"){
+        if (!email || !password){
+          alert("Email and password are required")
+          return;
+        }
+        await login (email, password);
+      }else{
+        if (!name || !email || !password){
+          alert("Email, and password are required")
+          return;
+        }
+        await signUp(email, password,name)
       }
-      await login (email, password);
-    }else{
-      if (!name || !email || !password){
-        alert("Name, email, and password are required")
-        return;
-      }
-      await signUp(email, password,name)
+    } catch (error) {
+      if (signState === "Sign In") {
+        alert("Login failed. Please check your email and password.");
+    } else {
+        alert("Sign up failed. Please try again.");
     }
-    setLoading(false);
+    } finally {
+      setLoading(false);
+    }
+
   };
 
   return (

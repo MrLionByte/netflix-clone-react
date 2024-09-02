@@ -44,7 +44,6 @@ export const Navbar = () => {
                <div className='dropdown'>
                     <p onClick={()=>{logout()}}>Sign Out of Netflix</p>
                </div>
-               <p onClick={()=>{logout()}}>Sign Out of Netflix</p>
           </div>
         </div>
     </div>

@@ -67,3 +67,8 @@
 .more-cards{
     padding-left: 6%;
 }
+
+.close-btn{
+    width: 2%;
+    cursor: pointer;
+}
